@@ -4,19 +4,26 @@ CURL *curl;
 
 int main(int argc, char ** argv)
 {
+
+  if (argc < 2)
+  {
+    puts("Usage: ./bin/searcher \"ENTER QUERRY HERE\"");
+    return 3;
+  }
+  
+  curl = curl_easy_init();
+  CURLcode res;
+  struct curl_slist *Custom_Headers = NULL;
+  char *url = Build_Url(argv[1]);
+  char *Json_Name = malloc(255);
   time_t t = time(NULL);
   struct tm tm = *localtime(&t);
 
-  curl = curl_easy_init();
-   curl_global_init(CURL_GLOBAL_ALL);
-  CURLcode res;
-  struct curl_slist *Custom_Headers = NULL;
-  char *url = Build_Url("\"@\" Brighton Caitlin");
-  char *Json_Name = malloc(255);
   sprintf(Json_Name,"%s-%d-%02d-%02d %02d:%02d:%02d%s","./Searches/Google_Search", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec,".json");
   FILE *json = fopen(Json_Name,"wb");
-  printf("%s\n\n",Json_Name);
-  printf("%s\n\n",url);
+
+  printf("Output File Name: %s\n\n",Json_Name);
+  printf("URL: %s\n\n",url);
 
 
   if(curl){
@@ -43,7 +50,6 @@ int main(int argc, char ** argv)
       printf("Perform was NOT Successful\nRES: %d\n",res);
     
     curl_easy_cleanup(curl);
-    curl_global_cleanup();
   }
   else
   {
