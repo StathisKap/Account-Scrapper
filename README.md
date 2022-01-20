@@ -10,10 +10,10 @@ You'll need to create a file named secrets.h  in the inlcude folder, with this f
 Feel free to use my cx, but you'll need your own key. (which you can get from [here](https://developers.google.com/custom-search/v1/overview "here"))
 The querry is passed as an argument. ex ./bin/searches "Museums"
 
-##Output: 
+## Output: 
 Json file, in a folder that will be created called "Searches"
 
-##Stack:
+## Stack:
 <ul>
     <li>gcc
     <li>libcurl
