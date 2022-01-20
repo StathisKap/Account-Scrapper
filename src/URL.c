@@ -2,17 +2,19 @@
 #include "../include/secrets.h" //Contains Key and cx
 
 extern CURL *curl;
-void error(char * msg, int code)
+
+
+size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-  fprintf(stderr, "%s: %s\n",msg, strerror(errno));
-  exit(code);
+  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  return written;
 }
 
 char * Build_Url(char * querry)
 {
   char *url = malloc(1024);
 
-  sprintf(url,"%s%s%s%s%s",                           \
+  sprintf(url,"%s%s%s%s%s",                         \
       CUSTOM_SEARCH_ENGINE_URL,                     \
       Custom_Search_Engine_cx,                      \
       "&q=",                                        \
@@ -21,4 +23,10 @@ char * Build_Url(char * querry)
       );
 
   return url;
+}
+
+void error(char * msg, int code)
+{
+  fprintf(stderr, "%s: %s\n",msg, strerror(errno));
+  exit(code);
 }
