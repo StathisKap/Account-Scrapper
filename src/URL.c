@@ -10,7 +10,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
   return written;
 }
 
-char * Build_Url(char * querry)
+char * Build_Url(char * querry, char * start)
 {
   char *url = malloc(1024);
   char start[50];
@@ -23,10 +23,8 @@ char * Build_Url(char * querry)
     printf("Directory is Empty\n");
   }
 
-    
-    
-  
-
+  char start_count[50];
+  sprintf(start_count,"&start=%d",atoi(start));
 
   sprintf(url,"%s%s%s%s%s%s",                         \
       CUSTOM_SEARCH_ENGINE_URL,                     \
@@ -34,6 +32,7 @@ char * Build_Url(char * querry)
       "&q=",                                        \
       curl_easy_escape(curl,querry,strlen(querry)), \
       "&start=101",
+      start_count,
       Custom_Search_Engine_Key                      \
       );
   

@@ -13,6 +13,11 @@
 #define CUSTOM_SEARCH_ENGINE_URL "https://customsearch.googleapis.com/customsearch/v1?"
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream);
+<<<<<<< HEAD
 char * Build_Url(char * querry);
 void error(char * msg, int code);
 char *isDirectoryEmpty(char *dirname);
+=======
+char * Build_Url(char * querry, char *start	);
+void error(char * msg, int code);
+>>>>>>> 7db52fe14fbe51ec97bad390fadfc03fe3788f69

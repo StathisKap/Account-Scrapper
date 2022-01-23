@@ -7,14 +7,14 @@ int main(int argc, char ** argv)
 
   if (argc < 2)
   {
-    puts("Usage: ./bin/searcher \"ENTER QUERRY HERE\"");
+    puts("Usage: ./bin/searcher \"ENTER QUERRY HERE\" [START NUMBER]");
     return 3;
   }
   
   curl = curl_easy_init();
   CURLcode res;
   struct curl_slist *Custom_Headers = NULL;
-  char *url = Build_Url(argv[1]);
+  char *url = Build_Url(argv[1], argv[2]);
   char *Json_Name = malloc(255);
   time_t t = time(NULL);
   struct tm tm = *localtime(&t);
